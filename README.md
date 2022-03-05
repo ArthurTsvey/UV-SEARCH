@@ -1,44 +1,27 @@
 # Ultraviolet
-Ultraviolet application
+Web proxy used for evading internet censorship or accessing websites in a controlled sandbox.
 
-[![Deploy to Heroku](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/heroku.svg)](https://heroku.com/deploy/?template=https://github.com/titaniumnetwork-dev/uv-app)
-[![Run on Replit](https://raw.githubusercontent.com/BinBashBanana/deploy-buttons/master/buttons/remade/replit.svg)](https://replit.com/github/titaniumnetwork-dev/uv-app)
+Ultraviolet works by intercepting HTTP requests with a service worker script that follows the [TompHTTP](https://github.com/tomphttp) specifications
 
-# Steps
-Installing on machine
 
-```
-git clone https://github.com/titaniumnetwork-dev/ultraviolet-node/
-cd ultraviolet-node
-git submodule update --init
-npm install
-npm start
-```
-On Repl, make sure to run the `git submodule update --init` command in shell.
+# Main scripts
 
-`http://localhost:8080/`
+The main scripts required for UV are located in `lib/`
 
-Change server address properties when desired. 
+- Scripts
+    - `uv.sw.js` Service worker gateway
+    - `uv.sw-handler.js` - Service worker handler
+    - `uv.bundle.js` Webpack compiled Ultraviolet rewriter
+    - `uv.handler.js` Client-side hooking
+    - `uv.config.js` Configuration
 
-# Updating Bare
-```
-git submodule update --remote
-```
+# Deploy
 
-However, this may override files in `static/` so be careful.
+[Deploy](https://github.com/titaniumnetwork-dev/uv-app)
 
-# Ultraviolet Config
-`uv.config.js`
 
-```javascript
-self.__uv$config = {
-    prefix: '/sw/', // Proxy url prefix
-    bare: '/bare/', // Bare server location
-    encodeUrl: Ultraviolet.codec.xor.encode, // URL Encoding function
-    decodeUrl: Ultraviolet.codec.xor.decode, // Decode URL function
-    handler: '/uv.handler.js', // Handler script
-    bundle: '/uv.bundle.js', // Bundled script
-    config: '/uv.config.js', // Configuration script
-    sw: '/uv.sw.js', // Service Worker Script
-};
-```
+# Authors
+
+Caracal.js - Creator of Ultraviolet
+
+Divide - Creator of TOMP
